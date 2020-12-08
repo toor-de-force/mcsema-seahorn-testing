@@ -33,7 +33,7 @@ for opt in ["0", "1", "2"]:
         # Generate CFG
         cmd = disassemble + " --binary " + binary_location + " --output /tmp/" + name + ".cfg"
         client.containers.run(docker_image, cmd, volumes={os.getcwd(): {'bind': '/tmp/', 'mode': 'rw'}})
-        cmd = lift + " --cfg /tmp/" + name + ".cfg --output /tmp/" + name + ".bc"
+        cmd = lift + " --cfg /tmp/" + name + ".cfg --output /tmp/" + name + ".bc --explicit-args"
         client.containers.run(docker_image, cmd, volumes={os.getcwd(): {'bind': '/tmp/', 'mode': 'rw'}})
         client.containers.run(docker_image, cleanup, volumes={os.getcwd(): {'bind': '/tmp/', 'mode': 'rw'}})
 
